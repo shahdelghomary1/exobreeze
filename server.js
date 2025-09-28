@@ -4,15 +4,23 @@ import session from "express-session";
 import passport from "passport";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.js";
+import cors from "cors";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as FacebookStrategy } from "passport-facebook";
 import User from "./models/User.js";
 
+/* ---------------- ENV + DB ---------------- */
 dotenv.config();
 connectDB();
 
 const app = express();
+
+/* ---------------- MIDDLEWARES ---------------- */
 app.use(express.json());
+app.use(cors({
+  origin: process.env.FRONTEND_URL, // http://localhost:3000
+  credentials: true
+}));
 app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
