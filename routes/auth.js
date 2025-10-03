@@ -49,7 +49,6 @@ router.post("/reset-password/:token", resetPassword);
 
 // 🔒 User type
 router.put("/user/type", protect, updateUserType);
-
 // 🧍 Individual Questionnaire Routes
 // Create (POST)
 router.post("/individual/step1", protect, saveIndividualStep1);

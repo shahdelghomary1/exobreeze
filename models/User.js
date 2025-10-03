@@ -56,7 +56,17 @@ const userSchema = new mongoose.Schema({
     }
   },
 
-  hasCompletedQuestionnaire: { type: Boolean, default: false }
+  hasCompletedQuestionnaire: { type: Boolean, default: false },
+
+  // ✅ آخر استعلام عن جودة الهواء
+  lastAirQualityCheck: {
+    lat: Number,
+    lon: Number,
+    city: String,
+    data: Object,
+    checkedAt: { type: Date, default: Date.now }
+  }
+
 }, { timestamps: true });
 
 export default mongoose.model("User", userSchema);

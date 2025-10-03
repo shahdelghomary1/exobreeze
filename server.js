@@ -4,6 +4,11 @@ import session from "express-session";
 import passport from "passport";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.js";
+import apiRoutes from "./routes/apiRoutes.js";
+import weatherRoutes from "./routes/weatherRoutes.js";
+
+
+
 import cors from "cors";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as FacebookStrategy } from "passport-facebook";
@@ -82,7 +87,8 @@ passport.deserializeUser((id, done) =>
 
 /* ---------------- ROUTES ---------------- */
 app.use("/auth", authRoutes);
-
+app.use("/api", apiRoutes);
+app.use("/api/weather", weatherRoutes);
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () =>
   console.log(`🚀 Server running on http://localhost:${PORT}`)
